@@ -1,0 +1,163 @@
+\chapter{Capítol 1. Matrius i Vectors} \label{cap:matrius}
+
+\section{Resum}
+
+\section{Exercicis i problemes} \label{sec:matrius-exercicis}
+\begin{exercise}[1.8.1]\label{ex:1.8.1}
+
+Sigui $\alpha \in \mathbb{R}$. Demostreu que la potència k-èsima de la matriu:
+
+\begin{equation}
+\label{e181_A}
+A = \begin{pmatrix}
+    \cos(\alpha) & -\sin(\alpha)\\
+    \sin(\alpha) & \cos(\alpha)\\
+\end{pmatrix}
+\end{equation}
+
+és la matriu:
+
+
+\begin{equation} 
+\label{e181_Ak}
+A^k = \begin{pmatrix}
+    \cos(k\alpha) & -\sin(k\alpha)\\
+    \sin(k\alpha) & \cos(k\alpha)\\
+\end{pmatrix}
+\end{equation}
+\end{exercise}
+
+
+\begin{solution}
+Veiem-ho per inducció completa. És evident que pel cas $n=1$ es compleix.
+
+Veiem que si es compleix per la potència $k$-èsima, llavors es compleix per la potència $k+1$-èsima.
+\begin{align}
+    A^{k+1}= A^k\cdot A &= 
+    \begin{pmatrix}
+            \cos(k\alpha) & -\sin(k\alpha)\\
+    \sin(k\alpha) & \cos(k\alpha)\\
+    \end{pmatrix}\cdot \begin{pmatrix}
+    \cos(\alpha) & -\sin(\alpha)\\
+    \sin(\alpha) & \cos(\alpha)\\ 
+\end{pmatrix},\\
+&=\begin{pmatrix}
+    \cos(k\alpha) \cos(\alpha)-\sin(k\alpha)\sin(\alpha) & -\cos(k\alpha)\sin(\alpha)-\sin(k\alpha)\cos(\alpha)\\
+\sin(k\alpha)\cos(\alpha)+\cos(k\alpha)\sin(\alpha) & -\sin(k\alpha) \sin(\alpha)+\cos(k\alpha)\cos(\alpha)\\
+\end{pmatrix}
+\end{align}
+
+Fem servir les fórmules d’addició:
+\[
+\cos(x+y)=\cos x\cos y-\sin x\sin y,
+\qquad
+\sin(x+y)=\sin x\cos y+\cos x\sin y.
+\]
+Amb $x=k\alpha$ i $y=\alpha$, obtenim
+\[
+A^{k+1}=
+\begin{pmatrix}
+\cos((k+1)\alpha) & -\sin((k+1)\alpha)\\
+\sin((k+1)\alpha) & \cos((k+1)\alpha)
+\end{pmatrix},
+\]
+i queda provat el pas inductiu.
+
+\end{solution}
+\newpage
+\begin{exercise}[1.8.2]
+Calculeu totes les potència $A^k$ de la matriu quadrada d'ordre $n$, $A=(a^j_i)$, que té tots els coeficients zero llevats dels situats just sobre la diagonal. En altres paraules,
+
+\[
+a_{i,j} = \left\{\begin{aligned}
+    &1, \text{ si } i = j+1,\\
+    &0, \text{ si } i \neq j+1.
+\end{aligned}\right.
+\]
+
+\textit{Indicació.} Feu-ho primer per a $n=2,3...$. Conjectureu què passarà en general i demostreu-ho de la manera següent: suposeu que és cert per a un cert $n=k$ i proveu-ho per a $n=k+1$ calculant $A^{k+1} = A\cdot A^k.$
+\end{exercise}
+
+\begin{solution}
+   Observem primer el patró que apareix en calcular les potències de $A$.
+
+   \begin{align} A^{2} = A\cdot A &= 
+    \begin{pmatrix} 0 & 1 & 0 &\hdots&0 &0 &0 \\ 
+        0 & 0 &1 &\hdots &0 &0 &0 \\ 
+        0 & 0 &0 &\hdots &0 &0 &0 \\ 
+        \vdots & \vdots &\vdots &\ddots &\vdots &\vdots &\vdots \\ 
+        0 & 0 & 0 &\hdots & 0&1 &0 \\ 0 & 0 & 0 &\hdots & 0&0 &1 \\ 
+        0 & 0 &0 &\hdots &0 &0 &0 
+    \end{pmatrix}\cdot 
+    \begin{pmatrix} 
+        0 & 1 & 0 &\hdots&0 &0 &0 \\ 
+        0 & 0 &1 &\hdots &0 &0 &0 \\ 
+        0 & 0 &0 &\hdots &0 &0 &0 \\ 
+        \vdots & \vdots &\vdots &\ddots &\vdots &\vdots &\vdots \\ 
+        0 & 0 & 0 &\hdots & 0&1 &0 \\ 
+        0 & 0 & 0 &\hdots & 0&0 &1 \\ 
+        0 & 0 &0 &\hdots &0 &0 &0 
+    \end{pmatrix},\\ 
+    &=\begin{pmatrix} 
+        0 & 0 & 1 &\hdots&0 &0 &0 \\ 
+        0 & 0 &0 &\hdots &0 &0 &0 \\ 
+        0 & 0 &0 &\hdots &0 &0 &0 \\ 
+        \vdots & \vdots &\vdots &\ddots &\vdots &\vdots &\vdots \\ 
+        0 & 0 & 0 &\hdots & 0&0 &1 \\ 
+        0 & 0 & 0 &\hdots & 0&0 &0 \\ 
+        0 & 0 &0 &\hdots &0 &0 &0 \end{pmatrix}\\ 
+        &= \left\{ \begin{aligned} 
+            &1, \text{ si } i = j+2,\\ 
+            &0, \text{ si } i \neq j+2. 
+        \end{aligned}\right. 
+    \end{align}
+
+    És a dir, els uns apareixen sobre la diagonal definida per $i=j+2$, que és la diagonal que comença a la tercera columna.
+
+    La nostra hipòtesi (que evidentment es compleix per als casos $k=1$ i $k=2$) és que la matriu $A^k$ estarà definida com 
+    \begin{equation}
+        \label{ex182Ap}
+        (A^p)_{ij} = \delta_{i,j+p},
+    \end{equation}
+    on $\delta_{ij}$ denota el \emph{delta de Kronecker}, recordem:
+    \[
+    \delta_{ij} =
+    \begin{cases}
+    1, & \text{si } i = j,\\
+    0, & \text{si } i \neq j.
+    \end{cases}
+    \]
+    Suposem que es compleix per al cas $k=p$ i veiem que es compleix per a $k=p+1$.
+    
+    A partir de \eqref{ex182Ap}, el pas inductiu es verifica de manera immediata. En efecte,
+    \[
+    (A^{p+1})_{ij}
+    = \sum_{k=1}^n (A^p)_{ik}\,A_{kj}
+    = \sum_{k=1}^n \delta_{i,k+p}\,\delta_{k,j+1}
+    = \delta_{i,j+p+1},
+    \]
+    Quan escrivim el producte:
+    \[
+    \delta_{i,k+p}\,\delta_{k,j+1},
+    \]
+    estem indicant que aquest val $1$ si i només si es compleixen simultàniament les dues condicions:
+    \[
+    \begin{cases}
+    i = k + p,\\
+    k = j + 1.
+    \end{cases}
+    \]
+    Si alguna d’aquestes condicions falla, el producte és nul. En aquest sentit, el producte de deltes de Kronecker representa la intersecció de les condicions imposades sobre els índexs.
+
+    Substituint la segona condició a la primera, obtenim
+    \[
+    i = k + p = (j+1) + p = j + (p+1).
+    \]
+    Per tant, les dues condicions conjuntes són equivalents a una sola relació,
+    \[
+    i = j + p + 1.
+    \]
+    I amb aquest argument demostrem que el patró es conserva per a $A^{p+1}$.
+
+
+\end{solution}

@@ -1,0 +1,122 @@
+% !TeX program = lualatex
+\documentclass[11pt,a4paper,oneside]{memoir}
+
+% ---------- Llengua (recomanat amb LuaLaTeX) ----------
+\usepackage{polyglossia}
+\setdefaultlanguage{catalan}
+
+\usepackage{microtype}
+
+% ---------- Interlineat ----------
+\linespread{1.07}\selectfont
+
+% ---------- Tipografia ----------
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{Menlo}
+% ---------- Matemàtiques ----------
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\mathtoolsset{showonlyrefs}
+\usepackage{bm}
+
+% ---------- Enllaços ----------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=black,
+  citecolor=black,
+  pdftitle={Exercicis de Matemàtiques},
+  pdfauthor={}
+}
+
+% ---------- Layout (memoir) ----------
+\settrimmedsize{\stockheight}{\stockwidth}{*}
+\setlrmarginsandblock{2.8cm}{2.8cm}{*}
+\setulmarginsandblock{2.6cm}{2.6cm}{*}
+\checkandfixthelayout
+% ---------- Paràgrafs ----------
+\nonzeroparskip
+\setlength{\parindent}{0pt}
+% ---------- Capçaleres ----------
+\makepagestyle{mystyle}
+\makeevenhead{mystyle}{\small\textsc{Exercicis de matemàtiques}}{}{\small\textsc{\leftmark}}
+\makeoddhead {mystyle}{\small\textsc{Exercicis de matemàtiques}}{}{\small\textsc{\leftmark}}
+\makeevenfoot{mystyle}{}{\thepage}{}
+\makeoddfoot {mystyle}{}{\thepage}{}
+\pagestyle{mystyle}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+% ---------- Profunditat ToC ----------
+\setsecnumdepth{subsection}
+\settocdepth{subsection}
+
+% ---------- Teoremes / exercicis ----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{proposition}[theorem]{Proposició}
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{corollary}[theorem]{Corol·lari}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definició}
+\makeatletter
+\newtheoremstyle{exerciseopt}
+  {6pt}   % espai abans
+  {6pt}   % espai després
+  {}      % font del cos
+  {}      % indentació
+  {\bfseries} % font del títol
+  {.}     % puntuació després del títol
+  {0.5em} % espai després del títol
+  {%
+    \thmname{#1}%
+    \if\relax\detokenize{#3}\relax
+      \thmnumber{ #2}%
+    \else
+      \thmnumber{ #3}%
+    \fi
+  }
+
+\theoremstyle{exerciseopt}
+\newtheorem{exercise}{Exercici}[section]
+\makeatother
+\newtheorem{example}[theorem]{Exemple}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Observació}
+\newenvironment{solution}{
+  \par\medskip
+  \small\itshape
+  \textit{Solució.}\;
+}{%
+  \hfill$\square$\par\medskip
+}
+% ---------- Macros ----------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Span}{span}
+
+% ---------- Títol ----------
+\title{\textbf{Exercicis de Matemàtiques}\\\large Notes personals}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\vspace{-0.5em}
+\tableofcontents
+\clearpage
+
+\include{capitols/cap1-matrius}
+\end{document}
