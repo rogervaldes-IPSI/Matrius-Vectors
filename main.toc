@@ -1,0 +1,6 @@
+\changetocdepth {2}
+\xpg@aux {}{catalan}
+\contentsline {chapter}{Índex}{1}{section*.1}%
+\contentsline {chapter}{\chapternumberline {1}Capítol 1. Matrius i Vectors}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Resum}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Exercicis i problemes}{2}{section.1.2}%
