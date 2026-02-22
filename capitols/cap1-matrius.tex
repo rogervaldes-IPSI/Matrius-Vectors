@@ -69,7 +69,7 @@ i queda provat el pas inductiu.
 Calculeu totes les potència $A^k$ de la matriu quadrada d'ordre $n$, $A=(a^j_i)$, que té tots els coeficients zero llevats dels situats just sobre la diagonal. En altres paraules,
 
 \[
-a_{i,j} = \left\{\begin{aligned}
+a^j_i = \left\{\begin{aligned}
     &1, \text{ si } i = j+1,\\
     &0, \text{ si } i \neq j+1.
 \end{aligned}\right.
@@ -80,7 +80,6 @@ a_{i,j} = \left\{\begin{aligned}
 
 \begin{solution}
    Observem primer el patró que apareix en calcular les potències de $A$.
-
    \begin{align} A^{2} = A\cdot A &= 
     \begin{pmatrix} 0 & 1 & 0 &\hdots&0 &0 &0 \\ 
         0 & 0 &1 &\hdots &0 &0 &0 \\ 
@@ -117,7 +116,7 @@ a_{i,j} = \left\{\begin{aligned}
     La nostra hipòtesi (que evidentment es compleix per als casos $k=1$ i $k=2$) és que la matriu $A^k$ estarà definida com 
     \begin{equation}
         \label{ex182Ap}
-        (A^p)_{ij} = \delta_{i,j+p},
+        (A^p)^j_i = \delta_{i,j+p},
     \end{equation}
     on $\delta_{ij}$ denota el \emph{delta de Kronecker}, recordem:
     \[
@@ -131,27 +130,27 @@ a_{i,j} = \left\{\begin{aligned}
     
     A partir de \eqref{ex182Ap}, el pas inductiu es verifica de manera immediata. En efecte,
     \[
-    (A^{p+1})_{ij}
-    = \sum_{k=1}^n (A^p)_{ik}\,A_{kj}
-    = \sum_{k=1}^n \delta_{i,k+p}\,\delta_{k,j+1}
+    (A^{p+1})^j_i
+    = \sum_{k=1}^n (A^p)^j_k\,A^k_i
+    = \sum_{k=1}^n \delta_{k,j+p}\,\delta_{i,k+1}
     = \delta_{i,j+p+1},
     \]
     Quan escrivim el producte:
     \[
-    \delta_{i,k+p}\,\delta_{k,j+1},
+    \delta_{k,j+p}\,\delta_{i,k+1},
     \]
     estem indicant que aquest val $1$ si i només si es compleixen simultàniament les dues condicions:
     \[
     \begin{cases}
-    i = k + p,\\
-    k = j + 1.
+    k = j+ p,\\
+    i= k + 1.
     \end{cases}
     \]
     Si alguna d’aquestes condicions falla, el producte és nul. En aquest sentit, el producte de deltes de Kronecker representa la intersecció de les condicions imposades sobre els índexs.
 
     Substituint la segona condició a la primera, obtenim
     \[
-    i = k + p = (j+1) + p = j + (p+1).
+    i = k + 1 = (j+p) + 1 = j + (p+1).
     \]
     Per tant, les dues condicions conjuntes són equivalents a una sola relació,
     \[
@@ -161,3 +160,344 @@ a_{i,j} = \left\{\begin{aligned}
 
 
 \end{solution}
+
+\begin{exercise}[1.8.3]
+Per a cada $n\in\mathbb{N}$, definim una matriu quadrada d'ordre $n$, $A_n=(a^j_i)$ de la manera següent.
+\begin{equation}
+    a^j_i = \left\{
+    \begin{aligned}
+        0\text{, si } i=j,\\
+        1\text{, si } i \neq j.
+    \end{aligned}\right.
+\end{equation}
+
+Escriviu explícitament la matriu per a $n=1,2,3,4$.
+\end{exercise}
+
+\begin{solution}
+    \begin{align}
+        A_1 &= \begin{pmatrix}
+        0
+        \end{pmatrix}  
+        &&A_2 = \begin{pmatrix}
+        0 & 1 \\
+        1 &0 
+        \end{pmatrix} \\
+        A_3 &= \begin{pmatrix}
+        0 & 1 & 1\\
+        1 &0 & 1\\
+        1 & 1 & 0 
+        \end{pmatrix} 
+        &&A_4 = \begin{pmatrix}
+        0 & 1 & 1 & 1\\
+        1 &0 & 1 & 1\\
+        1 & 1 & 0  &1\\
+        1 & 1 & 1 & 0 
+    \end{pmatrix} 
+    \end{align}
+\end{solution}
+
+\begin{exercise}[1.8.4]
+Per a cada $n\in\mathbb{N}$, definim una matriu quadrada d'ordre $n$, $A_n=(a_{ij})$ de la manera següent.
+\begin{equation}
+    a^j_i = \left\{\begin{aligned}
+        1\text{, si } i=j,\\
+        2\text{, si } i < j,\\
+        -2\text{, altrament.}
+    \end{aligned}
+    \right.
+\end{equation}
+
+Escriviu explícitament la matriu per a $n=1,2,3,4$.
+\end{exercise}
+
+\begin{solution}
+    \begin{align}
+        A_1 &= \begin{pmatrix}
+        1
+        \end{pmatrix}  
+        &&A_2 = \begin{pmatrix}
+        1 & -2 \\
+        2 &1 
+        \end{pmatrix} \\
+        A_3 &= \begin{pmatrix}
+        1 & -2 & -2\\
+        2&1 & -2\\
+        2 & 2 & 1 
+        \end{pmatrix} 
+        &&A_4 = \begin{pmatrix}
+        1 & -2 & -2 & -2\\
+        2 &1 & -2& -2\\
+        2 & 2 & 1  &-2\\
+        2 & 2 & 2 & 1 
+    \end{pmatrix} 
+    \end{align}
+\end{solution}
+
+
+\begin{exercise}[1.8.5]
+    Considereu les matrius:
+
+    \begin{equation}
+        A = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0 
+        \end{pmatrix},\qquad B = \begin{pmatrix}
+        1& 0 \\
+        1 & 1 
+        \end{pmatrix}.
+    \end{equation}
+    Esbrineu quines de les igualtats són certes i quines no.
+
+    \begin{enumerate}
+    \item $(A+B)^2 = A^2+B^2+2AB$.
+    \item $(A+B)^2 = A^2+B^2+AB + BA$.
+    \item $(A-B)^2=A^2+B^2-2AB$.
+    \item $(A-B)^2 = A^2+B^2-AB - BA$.
+    \item $(A+B)(A-B) = A^2-B^2$.
+    \item $(A+B)(A-B) = A^2-B^2-AB + BA$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+Demostrarem que $AB \neq BA$, i amb això ja haurem acabat.
+\begin{align}
+AB &= \begin{pmatrix}
+        0 & 1 \\
+        1 & 0 
+        \end{pmatrix}\begin{pmatrix}
+        1& 0 \\
+        1 & 1 
+        \end{pmatrix} = \begin{pmatrix}
+        1& 1 \\
+        1 & 0 
+        \end{pmatrix},\\
+BA &= \begin{pmatrix}
+        1& 0 \\
+        1 & 1 
+        \end{pmatrix}\begin{pmatrix}
+        0 & 1 \\
+        1 & 0 
+        \end{pmatrix} = \begin{pmatrix}
+        0& 1 \\
+        1 & 1 
+        \end{pmatrix}.
+\end{align}
+\end{solution}
+
+
+\begin{exercise}[1.8.6]
+    Calculeu les potències $J^2=JJ$, $J^3 = J^2J$, ..., $J^k = J^{k-1}J$, per a tot $k\in\mathbb{N}$ de la matriu de blocs següent:
+
+    \[
+    J =
+    \left(
+    \begin{array}{c|c}
+    0 & I_n \\ \hline
+    I_n & 0
+    \end{array}
+    \right)
+    \]
+
+\end{exercise}
+
+\begin{solution}
+    \[
+    J^2 =
+    \left(
+    \begin{array}{c|c}
+    0 & I_n \\ \hline
+    I_n & 0
+    \end{array}
+    \right) \left(
+    \begin{array}{c|c}
+    0 & I_n \\ \hline
+    I_n & 0
+    \end{array}
+    \right) =  \left(
+    \begin{array}{c|c}
+    I_n & 0 \\ \hline
+    0 & I_n
+    \end{array}
+    \right)=I_{2n}
+    \]
+
+    Així doncs:
+    $$J^k = \left\{
+        \begin{aligned}
+        &J &&\text{si existeix } m \in \mathbb{N} \text{ tal que } k = 2m,\\
+        &I_{2n}&&\text{, altrament.}
+        \end{aligned}
+    \right.
+    $$
+\end{solution}
+
+
+\begin{exercise}[1.8.7]
+    Calculeu el producte de matrius de blocs següent:
+
+    \[
+    \left(
+    \begin{array}{c|c}
+    I_n & I_n \\ \hline
+    0 & I_n 
+    \end{array}
+    \right)    
+    \left(
+    \begin{array}{c|c}
+    I_n & -I_n \\ \hline
+    0 & I_n
+    \end{array}
+    \right)
+    \]
+
+\end{exercise}
+
+\begin{solution}
+       \[
+    \left(
+    \begin{array}{c|c}
+    I_n & I_n \\ \hline
+    0 & I_n 
+    \end{array}
+    \right)    
+    \left(
+    \begin{array}{c|c}
+    I_n & -I_n \\ \hline
+    0 & I_n
+    \end{array}
+    \right) = \left(
+    \begin{array}{c|c}
+    I_n & 0 \\ \hline
+    0 & I_n
+    \end{array}
+    \right)
+    \] 
+\end{solution}
+
+
+\begin{exercise}[1.8.8]
+    Sigui $n\in\mathbb{N}$ i siguin $A,B\in M_{n\times n}(\mathbb{R})$. Calculeu: 
+    \[
+    \left(
+    \begin{array}{c|c}
+    I_n & I_n \\ \hline
+    0 & I_n 
+    \end{array}
+    \right)    
+    \left(
+    \begin{array}{c|c}
+    A & B \\ \hline
+    B & A
+    \end{array}
+    \right)
+    \left(
+    \begin{array}{c|c}
+    I_n & -I_n \\ \hline
+    0 & I_n
+    \end{array}
+    \right)
+    \]
+
+\end{exercise}
+
+\begin{solution}
+    \begin{align}
+    \left(
+    \begin{array}{c|c}
+    I_n & I_n \\ \hline
+    0 & I_n 
+    \end{array}
+    \right)    
+    \left(
+    \begin{array}{c|c}
+    A & B \\ \hline
+    B & A
+    \end{array}
+    \right)
+    \left(
+    \begin{array}{c|c}
+    I_n & -I_n \\ \hline
+    0 & I_n
+    \end{array}
+    \right)&=
+        \left(
+    \begin{array}{c|c}
+    A+B & A+B \\ \hline
+    B & A
+    \end{array}
+    \right)
+    \left(
+    \begin{array}{c|c}
+    I_n & -I_n \\ \hline
+    0 & I_n
+    \end{array}
+    \right)\\
+    &=
+    \left(
+    \begin{array}{c|c}
+    A+B & 0 \\ \hline
+    B & A-B
+    \end{array}
+    \right)
+\end{align}
+\end{solution}
+
+
+\begin{exercise}[1.8.9]
+    Donades dues matrius quadrades $A,B\in M_{n\times n}(\mathbb{R})$ que commutin (és a dir, tals que $AB =BA$):
+    
+    \begin{enumerate}[label=(\roman*)]
+        \item Demostreu que
+        \[
+        (A+B)^m = \sum_{j=0}^m \begin{pmatrix} m \\j \end{pmatrix} A^{m-j}B^j.
+        \]
+
+        per a tot $m\in \mathbb{N}$, on $\begin{pmatrix} m \\j \end{pmatrix}:= \dfrac{m!}{k!(m-k)!}$. \textit{Indicació.} Comproveu-ho per a $m=2$ i calculeu:
+        \[(A+B)^m = (A+B)(A+B)^{m-1}\]
+    \end{enumerate}
+    \begin{solution}
+    Usant que $A$ i $B$ commuten, podem veure fàcilment que:
+    \begin{align}
+    (A+B)^2 &= (A+B)\cdot (A+B),\\
+    &= A^2+AB + BA + B^2 ,\\
+    &= A^2+AB + AB + B^2 ,\\
+    &= A^2+2AB + B^2 ,\\
+    &= \begin{pmatrix} 2 \\0 \end{pmatrix}A^2 + \begin{pmatrix} 2 \\1 \end{pmatrix}AB + \begin{pmatrix} 2 \\2 \end{pmatrix}B^2, \\
+    &= \sum_{j=0}^2 \begin{pmatrix} m \\j \end{pmatrix} A^{m-j}B^j
+    \end{align}
+
+    Ara, anem a veure que si és cert per al cas $m=k$, es compleix pel cas $m=k+1$.
+    \begin{align}
+    (A+B)^{k+1} &= (A+B)^k\cdot (A+B),\\
+    &= \left(\sum_{j=0}^k \begin{pmatrix} k \\j \end{pmatrix} A^{k-j}B^j\right)(A+B) ,\\
+    &=  A\sum_{j=0}^k \begin{pmatrix} k \\j \end{pmatrix} A^{k-j}B^j+ B\sum_{j=0}^k \begin{pmatrix} k \\j \end{pmatrix} A^{k-j}B^{j},\\
+    &=  \sum_{j=0}^k \begin{pmatrix} k \\j \end{pmatrix} A^{k-j+1}B^j+\sum_{j=0}^k \begin{pmatrix} k \\j \end{pmatrix} A^{k-j}B^{j+1},\\
+    &= \sum_{j=1}^k \begin{pmatrix} k \\j \end{pmatrix} A^{k-j+1}B^j+ \sum_{j=1}^{k+1} \begin{pmatrix} k \\j-1 \end{pmatrix} A^{k-(j-1)}B^{(j-1)+1},\\
+    &= \sum_{j=0}^k \begin{pmatrix} k \\j \end{pmatrix} A^{k-j+1}B^j+ \sum_{j=1}^{k+1} \begin{pmatrix} k \\j-1 \end{pmatrix} A^{k+1-j}B^{j},\\
+    &= \begin{pmatrix} k \\0 \end{pmatrix}A^{k+1}+ \sum_{j=1}^k \begin{pmatrix} k \\j \end{pmatrix} A^{k-j+1}B^j+ \sum_{j=1}^{k} \begin{pmatrix} k \\j-1 \end{pmatrix} A^{k+1-j}B^{j} +\begin{pmatrix} k \\k \end{pmatrix}B^{k+1} ,\\
+    &= \begin{pmatrix} k+1 \\0 \end{pmatrix}A^{k+1}+ \sum_{j=1}^k \left(\begin{pmatrix} k \\j \end{pmatrix} A^{k-j+1}B^j+\begin{pmatrix} k \\j-1 \end{pmatrix} A^{k+1-j}B^{j}\right)+\begin{pmatrix} k+1 \\k+1 \end{pmatrix}B^{k+1} ,\\
+    \label{ex189_a}&= \begin{pmatrix} k+1 \\0 \end{pmatrix}A^{k+1}+ \sum_{j=1}^k \left(\begin{pmatrix} k \\j \end{pmatrix} +\begin{pmatrix} k \\j-1 \end{pmatrix}\right) A^{k+1-j}B^{j}+\begin{pmatrix} k+1 \\k+1 \end{pmatrix}B^{k+1}.
+\end{align}
+Ara, usant que:
+    \begin{align}
+    \begin{pmatrix} k \\j \end{pmatrix} +\begin{pmatrix} k \\j-1 \end{pmatrix} 
+        &= \dfrac{k!}{j!(k-j)!} + \dfrac{k!}{(j-1)!(k-(j-1))!},\\
+        &= \dfrac{k!}{j!(k-j)!} + \dfrac{k!}{(j-1)!(k+1-j)!},\\
+        &= \dfrac{k!(k+1-j)}{j!(k-j)!(k+1-j)} + \dfrac{k!j}{(j-1)!(k+1-j)!j},\\
+        &= \dfrac{k!(k+1-j)}{j!(k+1-j)!} + \dfrac{j k!}{j!(k+1-j)!},\\
+        &= \dfrac{k! (k+1-j)+jk!}{j!(k+1-j)!},\\
+        &= \dfrac{(k+1)k! -jk!+jk!}{j!(k+1-j)!},\\
+        &= \dfrac{(k+1)!}{j!(k+1-j)!},\\
+        &=\begin{pmatrix} k+1 \\j \end{pmatrix} .
+    \end{align}
+    Recuperant \eqref{ex189_a}, podem concloure que:
+    \begin{align}
+    (A+B)^{k+1}&= \begin{pmatrix} k+1 \\0 \end{pmatrix}A^{k+1}+ \sum_{j=1}^k \left(\begin{pmatrix} k \\j \end{pmatrix} +\begin{pmatrix} k \\j-1 \end{pmatrix}\right) A^{k+1-j}B^{j}+\begin{pmatrix} k+1 \\k+1 \end{pmatrix}B^{k+1} ,\\
+    &= \begin{pmatrix} k+1 \\0 \end{pmatrix}A^{k+1}+ \sum_{j=1}^k \begin{pmatrix} k+1 \\j \end{pmatrix}  A^{k+1-j}B^{j}+\begin{pmatrix} k+1 \\k+1 \end{pmatrix}B^{k+1} ,\\
+    &= \sum_{j=0}^{k+1} \begin{pmatrix} k+1 \\j \end{pmatrix}  A^{k+1-j}B^{j}.
+\end{align}
+
+
+\end{solution}
+\end{exercise}
